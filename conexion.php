@@ -57,7 +57,7 @@ function insertar($conexion)
     // Use prepared statements to prevent SQL injection
     $consulta = "INSERT INTO usuarios (Nombre_us,Apellidos,usuario,contraseña,area) 
     VALUES ('$nombre','$apellidos' ,'$usuario','$contraseña','$area' )";
-     header('Location: usuarios.php');
+     header('Location: usuarios.html');
     mysqli_query($conexion,$consulta);
     mysqli_close($conexion);
 }
@@ -68,7 +68,7 @@ function insertaArea($conexion){
 
     $consulta = "INSERT INTO areas (nombre_area,responsable) 
     VALUES ('$nombreArea','$responsable')";
-    header('Location: areas.php');
+    header('Location: areas.html');
     mysqli_query($conexion,$consulta);
     mysqli_close($conexion);
 }
@@ -108,7 +108,7 @@ function cargarTabla($conexion){
         exit();
     }if(isset($_POST['editar']) && $_POST['id_usuario'] == $fila['id_us']){
         $idUsuario=$_POST['id_usuario'];
-        header('Location: EditaUsuario.php?id_us='.$fila['id_us']);
+        header('Location: EditaUsuario.html?id_us='.$fila['id_us']);
         exit();
     }
         echo"<tr>";
