@@ -32,7 +32,7 @@ function login($conexion){
     if ($resultado) {
         // Verifica si se encontró un usuario con las credenciales proporcionadas
         if (mysqli_num_rows($resultado) == 1) {
-            header("Location: index.php");
+            header("Location: index.html");
             exit();
         } else {
             // Credenciales incorrectas
