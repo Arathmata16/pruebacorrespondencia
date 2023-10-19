@@ -1,0 +1,126 @@
+<?php include('conexion.php');
+
+if (isset($_SESSION['user_id'])) {
+    // El usuario ha iniciado sesión, puedes acceder a los datos de la sesión
+    $user_id = $_SESSION['user_id'];
+    $username = $_SESSION['username'];
+    // ... otros datos de sesión ...
+
+    // El resto del contenido de tu página para usuarios autenticados va aquí
+} else {
+    // El usuario no ha iniciado sesión, redirigir a la página de inicio de sesión
+    header("Location: index.html");
+    exit();
+}
+?>
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--<meta http-equiv="refresh" content="0;url=login.html">-->
+    <title>Correspondencia</title>
+
+
+    <!-- Incluye los estilos de Bootstrap CSS -->
+    <link rel="stylesheet" href="bootstrap-5.3.2-dist/bootstrap-5.3.2-dist/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div style="font-size: 60px; text-align: center; font-family:Arial">
+        <img src="Imagenes/SEDIF.png" style="height: 10%; width: 10%;">
+        <a >CORRESPONDENCIA </a>
+        <img src="Imagenes/LOGO-ESTADO.png" style="height: 10%; width: 10%;">
+    </div>
+
+    <!--BARRA DE NAVEGACION-->
+<div style="height:50px;background-color:#d9d9d9; font-family:Arial">
+    <div>
+         <nav class="navbar bg-body-tertiary ">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#"></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel"
+          style="height: 40%;width: 20%;margin: 3%;">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menú</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="inicio.php">Inicio</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active"aria-current="page" href="#">Configuración</a>
+                </li>
+                <li class="nav-item ">
+                  <a class="nav-link active" aria-current="page" href="cerrar_sesion.php">Cerrar sesion</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+</div>
+    <!--CONTENEDOR DE BOTONES-->
+
+        <div class="container" style="margin-top:50px">
+            <div class="row" style="padding:1%;">
+                <div class="col-md-4">
+                    <!-- Fila 1, Columna 1 -->
+                    <button class="btn my-custom-btn" style="font-size: 20px; width: 100%; height: 150px; font-family: Arial: text-align:left">
+                       COLOR DEL <br>SISTEMA <p>
+                        <img src="Imagenes/paleta.png" style="height: 100px; width: 100px;">
+                    </button>
+                </div>
+                <div class="col-md-4">
+                    <!-- Fila 1, Columna 2 -->
+                    <button class="btn my-custom-btn" style="font-size: 20px; width: 100%; height: 150px; font-family: Arial">
+                        LOGOTIPOS
+                        <img src="Imagenes/proceso-creativo.png" style="height: 120px; width: 120px;">
+                    </button>
+                </div>
+                <div class="col-md-4">
+                    <!-- Fila 1, Columna 3 -->
+                    <button class="btn my-custom-btn" style="font-size: 15px; width: 100%; height: 150px; font-family:Arial ">
+                        <div>CAMBIAR <br> CONTRASEÑA</div>
+                        <img src="Imagenes/contrasena.png" style="height: 100px; width: 100px;">
+                    </button>
+                </div>
+            </div>
+            <div class="row" style="padding: 1%;">
+            </div>
+        </div>
+
+
+
+    <!-- Incluye los archivos JavaScript de Bootstrap (jQuery es requerido) -->
+    <script src="bootstrap-5.3.2-dist/bootstrap-5.3.2-dist/js/jquery.min.js"></script>
+    <script src="bootstrap-5.3.2-dist/bootstrap-5.3.2-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+      history.pushState(null, null, location.href);
+      window.onpopstate = function () {
+          history.go(1);
+      };
+  </script>
+
+    <style>
+        .my-custom-btn{
+            background-color: white;
+            color: black;
+            border-color: black;
+        }
+        .my-custom-btn:hover{
+            background-color: #CB7169;
+
+        }
+    </style>
+  
+</body>
+
+</html>

@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 $conexion = mysqli_connect('localhost', 'root', '', 'correspondencia') or die(mysqli_error($mysql1));
 
 
@@ -24,24 +24,34 @@ function diferencia($conexion){
 function login($conexion){
     $usuario = $_POST['usuario'];
     $contrasena = $_POST['contrasena'];
-    
+
     // Realiza la consulta para verificar las credenciales
     $consulta = "SELECT * FROM usuarios WHERE usuario = '$usuario' AND contraseña = '$contrasena'";
     $resultado = mysqli_query($conexion, $consulta);
 
-    if ($resultado) {
-        // Verifica si se encontró un usuario con las credenciales proporcionadas
-        if (mysqli_num_rows($resultado) == 1) {
-            header("Location: index.html");
+    if (mysqli_num_rows($resultado) == 1) {
+        $row = mysqli_fetch_assoc($resultado);
+        $nombre_usuario = $row['usuario'];
+    
+        if ($nombre_usuario === 'manuel.trujillo') {
+            //usuario root
+            $_SESSION['user_id'] = $row['id_us'];
+            $_SESSION['username'] = $nombre_usuario;
+            header("Location: inicio.php");
             exit();
         } else {
-            // Credenciales incorrectas
-            echo "Credenciales incorrectas. Intente de nuevo.";
+            // usuario administrador
+            $_SESSION['user_id'] = $row['id_us'];
+            $_SESSION['username'] = $nombre_usuario;
+            header("Location: home.php");
+            exit();
         }
     } else {
         // Error en la consulta
-        echo "Error en la consulta: " . mysqli_error($conexion);
+        echo '<script>alert("Usuario o contraseña invalido. Intente nuevamente");</script>';
+        echo '<script>window.location.href = "index.html";</script>';
     }
+    
 
     mysqli_close($conexion);
 }
@@ -57,7 +67,7 @@ function insertar($conexion)
     // Use prepared statements to prevent SQL injection
     $consulta = "INSERT INTO usuarios (Nombre_us,Apellidos,usuario,contraseña,area) 
     VALUES ('$nombre','$apellidos' ,'$usuario','$contraseña','$area' )";
-     header('Location: usuarios.html');
+     header('Location: usuarios.php');
     mysqli_query($conexion,$consulta);
     mysqli_close($conexion);
 }
@@ -108,7 +118,7 @@ function cargarTabla($conexion){
         exit();
     }if(isset($_POST['editar']) && $_POST['id_usuario'] == $fila['id_us']){
         $idUsuario=$_POST['id_usuario'];
-        header('Location: EditaUsuario.html?id_us='.$fila['id_us']);
+        header('Location: EditaUsuario.php?id_us='.$fila['id_us']);
         exit();
     }
         echo"<tr>";

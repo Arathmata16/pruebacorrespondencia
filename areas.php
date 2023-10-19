@@ -1,4 +1,18 @@
-<?php include('conexion.php'); ?>
+<?php include('conexion.php');
+
+if (isset($_SESSION['user_id'])) {
+    // El usuario ha iniciado sesión, puedes acceder a los datos de la sesión
+    $user_id = $_SESSION['user_id'];
+    $username = $_SESSION['username'];
+    // ... otros datos de sesión ...
+
+    // El resto del contenido de tu página para usuarios autenticados va aquí
+} else {
+    // El usuario no ha iniciado sesión, redirigir a la página de inicio de sesión
+    header("Location: index.html");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -20,7 +34,7 @@
     <body>
         <div class="container" style="margin: 100px;">
             <div class="boton" style="text-align: right;">
-              <a href="agregarAreas.html">
+              <a href="agregarAreas.php">
                     <button class="btn my-custom-btn" style="font-size: 10px; width: 150px; height:50px; ">
                         Nueva Area
                         <img src="Imagenes/agregarUs.png" style="height: 40px; width: 40px;">

@@ -1,4 +1,18 @@
-<?php include('conexion.php'); ?>
+<?php include('conexion.php');
+
+if (isset($_SESSION['user_id'])) {
+    // El usuario ha iniciado sesión, puedes acceder a los datos de la sesión
+    $user_id = $_SESSION['user_id'];
+    $username = $_SESSION['username'];
+    // ... otros datos de sesión ...
+
+    // El resto del contenido de tu página para usuarios autenticados va aquí
+} else {
+    // El usuario no ha iniciado sesión, redirigir a la página de inicio de sesión
+    header("Location: index.html");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 
